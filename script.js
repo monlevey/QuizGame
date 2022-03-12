@@ -120,8 +120,13 @@ function saveInitials(){
             // create li with player initials
             const li = document.createElement('li');
             li.textContent = lastInitials;
+            // append player score next to initials 
+            const span = document.createElement('span');
+            span.textContent = " had a score of " + timeRemaining;
+            li.appendChild(span);
             //append player's initials to the highscore list
             ulHighscoreboard.appendChild(li);
+
         }
     }
         
