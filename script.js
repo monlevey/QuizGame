@@ -1,9 +1,14 @@
 const buttonStart = document.getElementById('button-start');
+const sectionHomepage = document.getElementById('section-homepage');
 const sectionQuestion = document.getElementById('section-question');
 
-const sectionHomepage = document.getElementById('section-homepage');
+const sectionHighscore = document.getElementById('section-highscore');
+const ulHighscoreboard = document.getElementById('ul-highscoreboard');
+
 
 const sectionInitials = document.getElementById('section-initials');
+const inputInitials = document.getElementById('input-initials');
+const buttonInitials = document.getElementById('button-initials');
 const spanScore = document.getElementById('span-score');
 
 const sectionTimer = document.getElementById('section-timer');
@@ -24,6 +29,8 @@ buttonStart.addEventListener('click', function(event){
     sectionTimer.setAttribute("style", "display: block;");
     // start timer
     startTimer();
+    // show questions
+    showQuestion(0);
 })
         // timer
         // update the span-timer for every passing second
@@ -67,29 +74,57 @@ function endGame(){
     clearInterval(timerId);
     // hide questions page
     sectionQuestion.setAttribute("style", "display: none;");
-    // show the initial page
-    sectionInitials.setAttribute("style", "display: block;");
-    // show their score
-    
-    // show the time remaining
-    spanScore.textContent = timeRemaining;
-
-    // hide timer
-    
-
+     
+    enterInitials();
 }
 
 
-// End Game screen
-// player types in input box
-// do nothing
-// player presses enter key
-// submit
-// player clicks submit button
-// submit
+// End Game and Enter Initials screen
+function enterInitials(){
+    // show the initial page
+    sectionInitials.setAttribute("style", "display: block;");
+    // show their score 
+    // show the time remaining in span score
+    spanScore.textContent = timeRemaining;
+    // hide timer 
+    sectionTimer.setAttribute("style", "display: none;");
+    
+    // when player types in input box or player presses enter key
+    saveInitials();
+}
+   
 
-// Submit button on end game screen 
-// append player's initials to the highscore local storage
+// let playerInitials = localStorage.getItem("playerInitials")
+// player types in input box 
+function saveInitials(){
+    // player clicks submit button
+    buttonInitials.addEventListener('click', function(event){
+        event.preventDefault();
+        let playerInitials = inputInitials.value.trim();
+        localStorage.setItem("playerInitials", playerInitials);
+
+        renderInitials();
+    });
+}
+
+
+    function renderInitials() {
+        // show Highscore 
+    sectionHighscore.setAttribute("style", "display: block;");
+    // hide initials section
+    sectionInitials.setAttribute("style", "display: none;");
+
+    // get player initials
+        let lastInitials = localStorage.getItem("playerInitials");
+        if (lastInitials !== null){
+            // create li with player initials
+            const li = document.createElement('li');
+            li.textContent = lastInitials;
+            //append player's initials to the highscore list
+            ulHighscoreboard.appendChild(li);
+        }
+    }
+        
 
 // Highscore page
 // 1. player clicks on play again button
