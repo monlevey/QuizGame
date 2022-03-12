@@ -1,0 +1,20 @@
+#section-question {
+    display: none;
+}
+
+#section-homepage {
+    display: block;
+}
+
+
+#section-initials {
+    display: none;
+}
+
+#section-highscore {
+    display: none;
+}
+
+#section-timer {
+    display:none;
+}

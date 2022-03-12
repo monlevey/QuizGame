@@ -13,28 +13,74 @@
     <!-- Homepage -->
     <section id="section-homepage">
         <h1>Coding Quiz to test you skills</h1>
-        <button>Start Quiz</button>
+        <button id="button-start">Start Quiz</button>
+    </section>
+
+  
+
+    <!-- Quiz Questions -->
+    <section id="section-question">
+        <!-- The Question Title-->
+        <h1 id="question-title">Question You Must Answer to Succeed (in life)</h1>
+
+
+        <!-- Answer choices -->
+        <ul id="choices">
+            <li><button>Option 1</button></li>
+
+            <li><button>Option 2</button></li>
+
+            <li><button>Option 3</button></li>
+
+            <li><button>Option 4</button></li>
+        </ul>
+
+
     </section>
 
 
 
-    <!-- Quiz Questions -->
-    <section class="hide" id="section-questions">
-        <h1>Question You Must Answer to Succeed (in life)</h1>
+
+    <!-- Timer -->
+    <section id="section-timer">
+        <p>Time Remaining 
+            <span id="span-timer"></span> seconds
+        </p>
     </section>
 
 
 
     <!-- submit initials to save scores -->
-    <section class="hide" id="section-initials">
-        <h1>Enter your Initials to Save your Score</h1>
+    <section id="section-initials">
+        <h1>Finished!!!!!</h1>
+        <h2>Your Score is: <span id="span-score"></span></h2>
+       
+        <label for="input-initials"> Enter your Initials to Save your Score </label>
+        <input id="input-initials" type="text">
+        
+        <button>Submit</button>
+
+
     </section>
 
 
 
     <!-- Highscore scoreboard -->
-    <section class="hide" id="section-highscore">
+    <section id="section-highscore">
         <h1>Highscore Scoreboard</h1>
+
+        <ul>
+            <li> Winner 1</li>
+            <li> Winner 2</li>
+            <li> Winner 3</li>
+            <li> Winner 4</li>
+        </ul>
+
+        <!-- Play Again button -->
+        <button>Play Again</button>
+
+        <!-- Exit button -->
+        <button>Exit</button>
     </section>
 
 
