@@ -1,5 +1,6 @@
 const buttonStart = document.getElementById('button-start');
 const sectionHomepage = document.getElementById('section-homepage');
+const header = document.getElementById('header');
 
 const sectionQuestion = document.getElementById('section-question');
 const questionTitle = document.getElementById('question-title');
@@ -35,6 +36,8 @@ buttonStart.addEventListener('click', function(event){
     sectionQuestion.setAttribute("style", "display: block;");
     // hide homepage section
     sectionHomepage.setAttribute("style", "display: none;");
+    // hide header
+    header.setAttribute("style", "display: none;");
     // show timer
     sectionTimer.setAttribute("style", "display: block;");
     // start timer
@@ -65,10 +68,16 @@ buttonStart.addEventListener('click', function(event){
             // show feedback element for 4seconds
             questionFeedback.textContent = message;
             questionFeedback.setAttribute("style", "display: block;");
+        
 
             setTimeout(function(){
                 questionFeedback.setAttribute("style", "display: none;");
             }, timeout)
+        }
+
+        function addClassToChangeBackground(message){
+            sectionQuestion.classList.remove('green-background', 'red-background');
+            sectionQuestion.classList.add(message);
         }
 
 // Question section
@@ -99,6 +108,7 @@ function showQuestion(index){
            if(correctChoice){
                // feedback says it is correct
                showFeedback('Correct');
+               addClassToChangeBackground('green-background');
            } 
             // if player clicks the incorrect choice
            else{
@@ -106,10 +116,8 @@ function showQuestion(index){
                showFeedback('Incorrect');
                // reduce the time remaining by 10secs
                timeRemaining = timeRemaining - 10;
+               addClassToChangeBackground('red-background');
            }
-
-           
-
 
             if(index + 1 >= questions.length){
             // reach final question
@@ -119,7 +127,6 @@ function showQuestion(index){
             showQuestion(index + 1);
         });
         
-
         // append button to li and li to ul
         liChoices.appendChild(buttonChoices);
         questionChoices.appendChild(liChoices);

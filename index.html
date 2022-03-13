@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/reset.css">
-    <link rel="stylesheet" href="assets/helper.css">
     <link rel="stylesheet" href="assets/style.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Qahiri&family=Sanchez&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+   
+    <title>Coding Quiz</title>
 </head>
 <body>
+    <!-- Header -->
+    <header id="header">
+        <h1>Code Your Way to Quiz Victory</h1>
+    </header>
+
+<main>
     <!-- Homepage -->
-    <section id="section-homepage">
-        <h1>Coding Quiz to test you skills</h1>
+    <section class="card-central" id="section-homepage">
+        <h1>Test Your Skills and Speed</h1>
         <button id="button-start">Start Quiz</button>
     </section>
 
   
 
     <!-- Quiz Questions -->
-    <section id="section-question">
+    <section class="card-central" id="section-question">
         <!-- The Question Title-->
         <h1 id="question-title"></h1>
 
@@ -34,7 +42,7 @@
 
             <li><button>Option 4</button></li>
         </ul>
-
+        
         <p id="p-feedback"></p>
     </section>
 
@@ -51,7 +59,7 @@
 
 
     <!-- submit initials to save scores -->
-    <section id="section-initials">
+    <section class="card-central" id="section-initials">
         <h1>Finished!!!!!</h1>
         <h2>Your Score is: <span id="span-score"></span></h2>
        
@@ -66,7 +74,7 @@
 
 
     <!-- Highscore scoreboard -->
-    <section id="section-highscore">
+    <section class="card-central" id="section-highscore">
         <h1>Highscore Scoreboard</h1>
 
         <ul id="ul-highscoreboard"> </ul>
@@ -88,7 +96,7 @@
 
         </div>
     </section>
-    
+</main>
 
     <script src="questions.js"></script>
     <script src="script.js"></script>

@@ -1,18 +1,121 @@
- 
-/* The Modal (background) */
+ :root{
+    --green: #53e640;
+    --lavender: #C287E8;
+    --yellow: #F7EC59;
+    --pink: #FF66D8;
+    --blush: #EECFD4;
+    --palegreen: #8aeb3c;
+    --forestgreen: #387e21;
+    --tangerine: #EC4E20;
+    --rockmelon: #FEC0AA;
+    --stormyblue: #3777FF;
+    --white: #feefdd;
+    --black: #201e1f;
+ }
+ *
+ {
+     box-sizing: border-box;
+ }
+/* dark background */
+ body {
+    background-color: var(--black);
+    background-image: url(../assets/images/jean-beller-RjfVzePmmfM-unsplash.jpg);
+    align-items: center;
+    justify-content: center;
+    align-items: stretch;
+    font-family: 'Sanchez', 'Lucida Grande', Verdana, sans-serif;
+    margin:0%;
+ }
+ /* bright impactful header */
+ header {
+    padding: 10px;
+    text-align: center;
+    background-color: var(--tangerine);
+    color: var(--blush);
+    font-size: x-large;
+    font-family: 'Sanchez', Georgia, 'Times New Roman', Times, serif;
+    align-content: center;
+    background-image: url(../assets/images/jean-beller-RjfVzePmmfM-unsplash.jpg);
+    background-size:contain;
+    background-repeat: repeat;
+    align-items: center;
+    justify-content: center;
+  }
+  /* responsive to mobile and desktop */
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+  }
+
+  h1 {
+      background-color: var(--stormyblue);
+      text-align:center;
+      padding: 2%;
+      border-width: 5px;
+      box-shadow: rgba(0, 0, 0, 0.15) 10px 6px 15px 8px;
+  }
+  /* large impactful button */
+ button { 
+    background-color: var(--yellow);
+    font-family: 'Sanchez', 'Lucida Grande', Verdana, sans-serif;
+    font-size: medium;
+    color: var(--black);
+    padding: 3%;
+    border: 3px solid var(--tangerine);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+    box-shadow: 10px 5px 5px 2px var(--darkblue);
+  }
+  /* remove bullet points */
+  ul {
+      list-style-type: none;
+      margin-left: 0;
+      padding:0;
+  }
+  /* gap between choice buttons */
+  li {
+      margin-top: 2%;
+  }
+
+  /* centralised sections */
+  .card-central {
+    width: 80%;
+    color: var(--white);
+    border-radius: 5px;
+    border-width: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 10px 6px 15px 8px;
+    font-size: 18px;
+    padding: 30px 40px;
+    justify-items: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+ .green-background {
+     background-color: var(--green);
+ }
+
+ .red-background {
+     background-color: var(--tangerine);
+ }
+
+/* The Modal */
 .modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100%; 
+    height: 100%; 
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: var(--tangerine);
   }
    /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
+    color: var(--black);
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -25,7 +128,7 @@
     font-size: 28px;
     font-weight: bold;
   }
-   .close:hover,
+    .close:hover,
   .close:focus {
     color: black;
     text-decoration: none;
@@ -40,6 +143,8 @@
 
 #p-feedback {
     display: none;
+    text-align: center;
+    
     
 }
 
@@ -50,18 +155,57 @@
 
 #section-initials {
     display: none;
+    background-color: var(--pink);
+    color: var(--white);
+}
+
+#button-initials {
+    background-color: var(--palegreen);
+    margin-top: 5%;
 }
 
 #section-highscore {
     display: none;
+    font-size: large;
+    background-color: var(--pink);
 }
 
 #section-timer {
     display:none;
+    background-color: var(--pink);
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    text-align: center;
+    color: var(--white);
 }
 
- 
+#button-play-again {
+    background-color: var(--palegreen);
+}
+#button-exit {
+    background-color: var(--green);
+}
 #modal-thanks {
     display:none;
  }
- 
+
+ /* designed for mobile with adjustments to increase text sizes for larger screens */
+@media screen and (min-width: 560px) {
+    header {
+      font-size: xx-large;
+    }
+    
+    /* change font size for desktop computers */
+    button {
+      font-size: large;
+    }
+    
+    /* larger password for desktop */
+    li {
+      font-size: large;
+    }
+
+    } 
+    
+    
