@@ -24,7 +24,7 @@ const spanTimer = document.getElementById('span-timer');
 
 let currentQuestionIndex = 0;
 
-let timeRemaining = 10;
+let timeRemaining = 99;
 let timerId = null;
 spanTimer.textContent = timeRemaining;
 
@@ -105,7 +105,7 @@ function showQuestion(index){
                 // feedback says it's incorrect   
                showFeedback('Incorrect');
                // reduce the time remaining by 10secs
-               timeRemaining = timeRemaining - 1;
+               timeRemaining = timeRemaining - 10;
            }
 
            
@@ -197,6 +197,17 @@ function enterInitials(){
         // get all highscores from local storage
         const highscores = retrieveHighScore();
 
+        // order highscores in descending order
+        highscores.sort(function(a, b){
+                if(b.highscore > a.highscore) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+                
+        });
+
+
         ulHighscoreboard.textContent = "";
         // create li with player scores
         for (let index = 0; index < highscores.length; index++){
@@ -226,10 +237,9 @@ function enterInitials(){
         resetTimer();
         // reset timer
         function resetTimer(){
-            timeRemaining = 3;
+            timeRemaining = 99;
             timerId = null;
             spanTimer.textContent = timeRemaining;
-        
         }
         // hide highscore section
         sectionHighscore.setAttribute("style", "display: none;");
