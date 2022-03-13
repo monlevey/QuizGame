@@ -4,6 +4,7 @@ const sectionHomepage = document.getElementById('section-homepage');
 const sectionQuestion = document.getElementById('section-question');
 const questionTitle = document.getElementById('question-title');
 const questionChoices = document.getElementById('ul-choices');
+const questionFeedback = document.getElementById('p-feedback');
 
 const sectionInitials = document.getElementById('section-initials');
 const inputInitials = document.getElementById('input-initials');
@@ -41,6 +42,7 @@ buttonStart.addEventListener('click', function(event){
     // show questions
     showQuestion(0);
 })
+
         // timer
         // update the span-timer for every passing second
         function startTimer(){
@@ -58,29 +60,77 @@ buttonStart.addEventListener('click', function(event){
             // 
         }
 
+        // feedback message for choices either correct or incorrect
+        function showFeedback(message, timeout = 4000){
+            // show feedback element for 4seconds
+            questionFeedback.textContent = message;
+            questionFeedback.setAttribute("style", "display: block;");
+
+            setTimeout(function(){
+                questionFeedback.setAttribute("style", "display: none;");
+            }, timeout)
+        }
+
 // Question section
 function showQuestion(index){
     const question = questions[index];
 
-
+    // change question title for each question
     questionTitle.textContent = question.title;
+
+    // loop through the choices for answers and create li for each one with a button
+    questionChoices.textContent = '';
+
+    for (let indexChoices = 0; indexChoices < question.choices.length; indexChoices++) {
+        const choice = question.choices[indexChoices];
+
+        const liChoices = document.createElement('li');
+
+        const buttonChoices = document.createElement('button');
+        buttonChoices.textContent = choice.title;
+        buttonChoices.setAttribute('data-answer', choice.isAns);
+
+        // when I click the choice button
+        buttonChoices.addEventListener('click', function(event){
+
+            // if the player clicks a choice 
+            // check if correct
+            const correctChoice = event.target.getAttribute('data-answer') === 'true';
+           if(correctChoice){
+               // feedback says it is correct
+               showFeedback('Correct');
+           } 
+            // if player clicks the incorrect choice
+           else{
+                // feedback says it's incorrect   
+               showFeedback('Incorrect');
+               // reduce the time remaining by 10secs
+               timeRemaining = timeRemaining - 1;
+           }
+
+           
+
+
+            if(index + 1 >= questions.length){
+            // reach final question
+            return endGame();
+            }
+            // show next question
+            showQuestion(index + 1);
+        });
+        
+
+        // append button to li and li to ul
+        liChoices.appendChild(buttonChoices);
+        questionChoices.appendChild(liChoices);
+    }
+
 }
-// when click on an answer
-// move to the next question
-
-// if the player clicks correct choice 
-// feedback is correct
 
 
-// if the player clicks wrong choice 
-// feedback is incorrect
 
-// reduce the time remaining by 10secs
 
-// if the player does not click on a choice and timer runs out
-// end game 
-// if the player clicks on choice of final question
-// end game
+
 
 // at end game
 function endGame(){
@@ -104,80 +154,112 @@ function enterInitials(){
     sectionTimer.setAttribute("style", "display: none;");
     
     // when player types in input box or player presses enter key
-    saveInitials();
 }
    
 
-// let playerInitials = localStorage.getItem("playerInitials")
-// player types in input box 
-function saveInitials(){
+    // when player types in input box or player presses enter key
     // player clicks submit button
     buttonInitials.addEventListener('click', function(event){
         event.preventDefault();
+
         let playerInitials = inputInitials.value.trim();
-        localStorage.setItem("playerInitials", playerInitials);
+        const highscore = {
+            name: playerInitials,
+            highscore: timeRemaining,
+        }
+         
+        const existingHighscores = retrieveHighScore();
+       
+        // add in new highscore 
+        existingHighscores.push(highscore);
+        // save to local storage
+        localStorage.setItem("highscores", JSON.stringify(existingHighscores));
+        console.log(highscore, existingHighscores);
 
-        renderInitials();
+        showHighScorePage();
     });
-}
+    
 
 
-    function renderInitials() {
+
+    function showHighScorePage(){
         // show Highscore 
-    sectionHighscore.setAttribute("style", "display: block;");
-    // hide initials section
-    sectionInitials.setAttribute("style", "display: none;");
+        sectionHighscore.setAttribute("style", "display: block;");
+        // hide initials section
+        sectionInitials.setAttribute("style", "display: none;");
+        renderInitials();
+    }
 
-    // get player initials
-        let lastInitials = localStorage.getItem("playerInitials");
-        if (lastInitials !== null){
-            // create li with player initials
+    function renderInitials(){
+        // clear input field
+        inputInitials.value = null;
+
+        // get all highscores from local storage
+        const highscores = retrieveHighScore();
+
+        ulHighscoreboard.textContent = "";
+        // create li with player scores
+        for (let index = 0; index < highscores.length; index++){
+            const highscore = highscores[index];
             let liPlayerScore = document.createElement('li');
             // add class list to the player score for easy removal
             liPlayerScore.classList.add('player-score');
-            // append player score next to initials 
-            liPlayerScore.textContent = lastInitials + " had a score of " + timeRemaining;
+            liPlayerScore.textContent = highscore.name + " had a score of " + highscore.highscore;
             //append player's initials to the highscore list
             ulHighscoreboard.appendChild(liPlayerScore);
-            
-            // clear input field
-            inputInitials.value = null;
         }
-    }
+ }
+     /**
+     * @returns {Array} retrieveHighScore
+     */
+    function retrieveHighScore(){
+        // get player highscore
+         return JSON.parse(localStorage.getItem("highscores") || "[]");
         
+    }
 
-//     let liFood = document.createElement("li");
-// liFood.classList.add('food-item');
-// liFood.textContent = "My favourite food is spaghetti";
-// favoriteEl.appendChild(liFood);
 
-// let buttonDelete = document.getElementById('button-delete');
-// buttonDelete.addEventListener('click', function(event){
-//         // delete an element from the dom
-//         let removeFood= document.querySelector('.food-item');
-//         removeFood.parentNode.removeChild(removeFood);
-// });
  
 // Highscore page
-//  player clicks on Play Again button
-buttonPlayAgain.addEventListener('click', function(event){
-    resetTimer();
-    // reset timer
-    function resetTimer(){
-        timeRemaining = 3;
-        timerId = null;
-        spanTimer.textContent = timeRemaining;
-       
-    }
-    // hide highscore section
-    sectionHighscore.setAttribute("style", "display: none;");
-    // show homepage section
-    sectionHomepage.setAttribute("style", "display: block;");
-});
-// Highscore page
-// 1. player clicks on play again button
-// Go to Homepage (show)
+    //  player clicks on Play Again button
+    buttonPlayAgain.addEventListener('click', function(event){
+        resetTimer();
+        // reset timer
+        function resetTimer(){
+            timeRemaining = 3;
+            timerId = null;
+            spanTimer.textContent = timeRemaining;
+        
+        }
+        // hide highscore section
+        sectionHighscore.setAttribute("style", "display: none;");
+        // show homepage section
+        sectionHomepage.setAttribute("style", "display: block;");
+    });
 
-// 2. player clicks on Exit button
-// clear the local storage
-// clear the highscore list
+
+    //  player clicks on Exit button
+    buttonExit.addEventListener('click', function(event){
+        // modal pops up
+        modal.setAttribute("style", "display: block;");
+        // clear the local storage
+        localStorage.clear();
+    
+    })
+    
+    
+    // When the user clicks on <span> (x), close the modal
+    spanClose.addEventListener('click', function(event){
+        modal.setAttribute("style", "display: none;");
+          // clear the highscore list and return to homepage
+          window.location.reload();
+    })
+    // when user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', function(event){
+        if (event.target == modal){
+            modal.setAttribute("style", "display: none;"); 
+              // clear the highscore list and return to homepage
+            window.location.reload();
+        }
+    })
+    

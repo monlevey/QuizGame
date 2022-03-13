@@ -38,6 +38,11 @@
     display: none;
 }
 
+#p-feedback {
+    display: none;
+    
+}
+
 #section-homepage {
     display: block;
 }
