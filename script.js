@@ -1,18 +1,27 @@
 const buttonStart = document.getElementById('button-start');
 const sectionHomepage = document.getElementById('section-homepage');
+
 const sectionQuestion = document.getElementById('section-question');
-
-const sectionHighscore = document.getElementById('section-highscore');
-const ulHighscoreboard = document.getElementById('ul-highscoreboard');
-
+const questionTitle = document.getElementById('question-title');
+const questionChoices = document.getElementById('ul-choices');
 
 const sectionInitials = document.getElementById('section-initials');
 const inputInitials = document.getElementById('input-initials');
 const buttonInitials = document.getElementById('button-initials');
 const spanScore = document.getElementById('span-score');
 
+
+const sectionHighscore = document.getElementById('section-highscore');
+const ulHighscoreboard = document.getElementById('ul-highscoreboard');
+const buttonPlayAgain = document.getElementById('button-play-again');
+const buttonExit = document.getElementById('button-exit');
+const modal = document.getElementById('modal-thanks');
+const spanClose = document.getElementById('span-close');
+
 const sectionTimer = document.getElementById('section-timer');
 const spanTimer = document.getElementById('span-timer');
+
+let currentQuestionIndex = 0;
 
 let timeRemaining = 10;
 let timerId = null;
@@ -49,8 +58,13 @@ buttonStart.addEventListener('click', function(event){
             // 
         }
 
-// questions
+// Question section
+function showQuestion(index){
+    const question = questions[index];
 
+
+    questionTitle.textContent = question.title;
+}
 // when click on an answer
 // move to the next question
 
@@ -118,19 +132,48 @@ function saveInitials(){
         let lastInitials = localStorage.getItem("playerInitials");
         if (lastInitials !== null){
             // create li with player initials
-            const li = document.createElement('li');
-            li.textContent = lastInitials;
+            let liPlayerScore = document.createElement('li');
+            // add class list to the player score for easy removal
+            liPlayerScore.classList.add('player-score');
             // append player score next to initials 
-            const span = document.createElement('span');
-            span.textContent = " had a score of " + timeRemaining;
-            li.appendChild(span);
+            liPlayerScore.textContent = lastInitials + " had a score of " + timeRemaining;
             //append player's initials to the highscore list
-            ulHighscoreboard.appendChild(li);
-
+            ulHighscoreboard.appendChild(liPlayerScore);
+            
+            // clear input field
+            inputInitials.value = null;
         }
     }
         
 
+//     let liFood = document.createElement("li");
+// liFood.classList.add('food-item');
+// liFood.textContent = "My favourite food is spaghetti";
+// favoriteEl.appendChild(liFood);
+
+// let buttonDelete = document.getElementById('button-delete');
+// buttonDelete.addEventListener('click', function(event){
+//         // delete an element from the dom
+//         let removeFood= document.querySelector('.food-item');
+//         removeFood.parentNode.removeChild(removeFood);
+// });
+ 
+// Highscore page
+//  player clicks on Play Again button
+buttonPlayAgain.addEventListener('click', function(event){
+    resetTimer();
+    // reset timer
+    function resetTimer(){
+        timeRemaining = 3;
+        timerId = null;
+        spanTimer.textContent = timeRemaining;
+       
+    }
+    // hide highscore section
+    sectionHighscore.setAttribute("style", "display: none;");
+    // show homepage section
+    sectionHomepage.setAttribute("style", "display: block;");
+});
 // Highscore page
 // 1. player clicks on play again button
 // Go to Homepage (show)

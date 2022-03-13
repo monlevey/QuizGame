@@ -21,11 +21,11 @@
     <!-- Quiz Questions -->
     <section id="section-question">
         <!-- The Question Title-->
-        <h1 id="question-title">Question You Must Answer to Succeed (in life)</h1>
+        <h1 id="question-title"></h1>
 
 
         <!-- Answer choices -->
-        <ul id="choices">
+        <ul id="ul-choices">
             <li><button>Option 1</button></li>
 
             <li><button>Option 2</button></li>
@@ -69,21 +69,28 @@
     <section id="section-highscore">
         <h1>Highscore Scoreboard</h1>
 
-        <ul id="ul-highscoreboard">
-            <li> Winner 1</li>
-            <li> Winner 2</li>
-            <li> Winner 3</li>
-            <li> Winner 4</li>
-        </ul>
+        <ul id="ul-highscoreboard"> </ul>
 
         <!-- Play Again button -->
-        <button>Play Again</button>
+        <button id="button-play-again">Play Again</button>
 
         <!-- Exit button -->
-        <button>Exit</button>
+        <button id="button-exit">Exit</button>
+
+
+         <!-- The Modal -->
+       <div id="modal-thanks" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" id="span-close">&times;</span>
+                <p>Thank you for playing, please close your browser window..</p>
+            </div>
+
+        </div>
     </section>
+    
 
-
+    <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
