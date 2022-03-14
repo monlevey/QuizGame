@@ -1,3 +1,4 @@
+ /* colours are bright and set for the entire document to allow easy changes */
  :root{
     --green: #53e640;
     --lavender: #C287E8;
@@ -16,7 +17,7 @@
  {
      box-sizing: border-box;
  }
-/* dark background */
+/* image background with placeholder colour*/
  body {
     background-color: var(--black);
     background-image: url(../assets/images/jean-beller-RjfVzePmmfM-unsplash.jpg);
@@ -26,7 +27,7 @@
     font-family: 'Sanchez', 'Lucida Grande', Verdana, sans-serif;
     margin:0%;
  }
- /* bright impactful header */
+ /* impactful header */
  header {
     padding: 10px;
     text-align: center;
@@ -47,7 +48,7 @@
     flex-wrap: wrap;
     flex-direction: column; 
   }
-
+/* same header style for all questions and section titles */
   h1 {
       background-color: var(--stormyblue);
       text-align:center;
@@ -93,10 +94,11 @@
     align-items: center;
     margin: 0 auto;
   }
+  /* green background for correct response*/
  .green-background {
      background-color: var(--green);
  }
-
+/* red background for incorrect response */
  .red-background {
      background-color: var(--tangerine);
  }
@@ -134,42 +136,31 @@
     text-decoration: none;
     cursor: pointer;
   }
- 
-
-
+/* sections are hidden initially */
 #section-question {
     display: none;
 }
-
 #p-feedback {
     display: none;
-    text-align: center;
-    
-    
+    text-align: center;    
 }
-
 #section-homepage {
     display: block;
 }
-
-
 #section-initials {
     display: none;
     background-color: var(--pink);
     color: var(--white);
 }
-
 #button-initials {
     background-color: var(--palegreen);
     margin-top: 5%;
 }
-
 #section-highscore {
     display: none;
     font-size: large;
     background-color: var(--pink);
 }
-
 #section-timer {
     display:none;
     background-color: var(--pink);
@@ -179,7 +170,6 @@
     text-align: center;
     color: var(--white);
 }
-
 #button-play-again {
     background-color: var(--palegreen);
 }
@@ -189,7 +179,7 @@
 #modal-thanks {
     display:none;
  }
-
+ 
  /* designed for mobile with adjustments to increase text sizes for larger screens */
 @media screen and (min-width: 560px) {
     header {

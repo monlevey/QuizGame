@@ -101,7 +101,6 @@ function showQuestion(index){
 
         // when I click the choice button
         buttonChoices.addEventListener('click', function(event){
-
             // if the player clicks a choice 
             // check if correct
             const correctChoice = event.target.getAttribute('data-answer') === 'true';
@@ -126,18 +125,11 @@ function showQuestion(index){
             // show next question
             showQuestion(index + 1);
         });
-        
         // append button to li and li to ul
         liChoices.appendChild(buttonChoices);
         questionChoices.appendChild(liChoices);
     }
-
 }
-
-
-
-
-
 
 // at end game
 function endGame(){

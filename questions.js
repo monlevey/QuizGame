@@ -1,11 +1,11 @@
 const questions = [
-
+// each question title and series of answer choices
     {
         title: "What could you use 'querySelectorAll' for? ",
         choices: [
             {
-            title: "selecting multiple HTML elements",
-            isAns: true,
+                title: "selecting multiple HTML elements",
+                isAns: true,
             },
             {
                 title: "selecting an element in HTML by id",
@@ -18,8 +18,8 @@ const questions = [
         title: "Which method stops the execution of an action at the set interval?",
         choices: [
             {
-            title: "setInterval",
-            isAns: false,
+                title: "setInterval",
+                isAns: false,
             },
             {
                 title: "setTimeout",
@@ -35,8 +35,8 @@ const questions = [
         title: "What can you save to local storage?",
         choices: [
             {
-            title: "JSON.parse",
-            isAns: false,
+                title: "JSON.parse",
+                isAns: false,
             },
             {
                 title: "objects",
@@ -56,8 +56,8 @@ const questions = [
         title: "What is padding?",
         choices: [
             {
-            title: "The Margin",
-            isAns: false,
+                title: "The Margin",
+                isAns: false,
             },
             {
                 title: "the content",
@@ -95,8 +95,8 @@ const questions = [
         title: "Using flex for the parent element, which style attribute will organise content along the horizontal axis?",
         choices: [
             {
-            title: "align-items",
-            isAns: false,
+                title: "align-items",
+                isAns: false,
             },
             {
                 title: "align-everything",
